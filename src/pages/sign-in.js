@@ -34,7 +34,7 @@ const signInPage = () => {
         provider: "google",
       },
       {
-        redirectTo: "http://localhost:3000",
+        redirectTo: "https://nextflix-beta.vercel.app",
       }
     );
 
