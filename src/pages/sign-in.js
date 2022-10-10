@@ -21,6 +21,9 @@ const signInPage = () => {
 
     const { error, data } = await supabase.auth.signIn({
       email,
+    },
+    {
+      redirectTo: "http://localhost:3000",
     });
 
     error ? setError({ error }) : setSubmited(true);
@@ -34,7 +37,7 @@ const signInPage = () => {
         provider: "google",
       },
       {
-        redirectTo: "https://nextflix-alpha-2.vercel.app",
+        redirectTo: "http://localhost:3000",
       }
     );
 
@@ -97,7 +100,7 @@ const signInPage = () => {
         </div>
 
         <div className=" container absolute text-[white] left-0 right-0  top-1/2 bottom-1/2 -translate-y-1/2 h-fit bg-[#000000b1] max-w-md w-[calc(100%-2rem)] z-20">
-          {/* {submited ? (
+          {submited ? (
             <div className="py-12 px-4">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-24 mb-6 block m-auto">
                 <path
@@ -169,7 +172,7 @@ const signInPage = () => {
                 Sign In with Google
               </button>
             </div>
-          )} */}
+          )}
           <div className="py-12 px-4">
             <h1 className="text-3xl font-semibold opacity-100 text-center">Sign In</h1>
             <button className="bg-[white] text-[color:black] py-3 w-full flex items-center justify-center mt-4" onClick={signInWithGoogle}>

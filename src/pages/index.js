@@ -7,11 +7,19 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [user, setUser] = useState(null);
 
+  // useEffect(() => {
+  //   (async () => {
+  //     const userData = await supabase.auth.user();
+  //     userData ? setUser(userData) : setUser(null);
+  //   })();
+  // }, []);
+
   useEffect(() => {
-    (async () => {
-      const userData = await supabase.auth.user();
-      userData ? setUser(userData) : setUser(null);
-    })();
+    setUser(supabase.auth.session()?.user);
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user);
+    });
   }, []);
 
   return (

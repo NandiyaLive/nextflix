@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 pt-5 sm:pt-3 z-50">
-      <div className={`bg-black w-full h-20 sm:h-16 fixed top-0 left-0 right-0 transition-opacity ${showBg ? "opacity-100" : "opacity-0 ease-out duration-700"}`}></div>
+      <div className={`bg-black backdrop-filter backdrop-blur-md bg-opacity-80 w-full h-20 sm:h-16 fixed top-0 left-0 right-0 transition-opacity ${showBg ? "opacity-100" : "opacity-0 ease-out duration-700"}`}></div>
       <div className="container flex items-center justify-between z-50">
         <div className="flex gap-10 items-center z-50">
           <div className="nav__logo cursor-pointer">
