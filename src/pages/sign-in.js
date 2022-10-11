@@ -173,7 +173,7 @@ const signInPage = () => {
               </button>
             </div>
           )}
-          <div className="py-12 px-4">
+          {/* <div className="py-12 px-4">
             <h1 className="text-3xl font-semibold opacity-100 text-center">Sign In</h1>
             <button className="bg-[white] text-[color:black] py-3 w-full flex items-center justify-center mt-4" onClick={signInWithGoogle}>
               <span className="pt-1">
@@ -189,7 +189,7 @@ const signInPage = () => {
               </span>
               Sign In with Google
             </button>
-          </div>
+          </div> */}
         </div>
       </section>
     </>
