@@ -21,9 +21,6 @@ const signInPage = () => {
 
     const { error, data } = await supabase.auth.signIn({
       email,
-    },
-    {
-      redirectTo: "http://localhost:3000",
     });
 
     error ? setError({ error }) : setSubmited(true);
@@ -35,9 +32,6 @@ const signInPage = () => {
     const { user, session, error } = await supabase.auth.signIn(
       {
         provider: "google",
-      },
-      {
-        redirectTo: "http://localhost:3000",
       }
     );
 
