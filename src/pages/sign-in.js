@@ -29,11 +29,9 @@ const signInPage = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user, session, error } = await supabase.auth.signIn(
-      {
-        provider: "google",
-      }
-    );
+    const { user, session, error } = await supabase.auth.signIn({
+      provider: "google",
+    });
 
     error && setError({ error });
 
