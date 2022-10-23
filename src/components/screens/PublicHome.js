@@ -23,7 +23,7 @@ const PublicHome = () => {
         <div className="banner">
           <div className="banner__bg">
             <Image src={bgImg} className="h-screen object-cover bg-no-repeat bg-top" alt="Background" />
-            <div className="absolute bg-black h-full top-0 bottom-0 left-0 right-0 opacity-70"></div>
+            <div className="absolute bg-black h-screen top-0 bottom-0 left-0 right-0 opacity-70"></div>
           </div>
         </div>
 
