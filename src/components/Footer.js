@@ -18,8 +18,6 @@ const Footer = () => {
     })();
   }, [router]);
 
-  console.log(showFooter);
-
   return showFooter ? (
     <footer className="container mx-auto my-4 flex items-center justify-between">
       <p className="text-sm text-gray-400">&copy; {new Date().getFullYear()} Netflix, Inc.</p>
