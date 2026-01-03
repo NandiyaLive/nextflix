@@ -1,0 +1,56 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    # Runs every 24 hours at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Ping Supabase
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_API_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_API_KEY }}
+        run: |
+          node -e "
+          const { createClient } = require('@supabase/supabase-js');
+
+          const supabase = createClient(
+            process.env.NEXT_PUBLIC_SUPABASE_URL,
+            process.env.NEXT_PUBLIC_SUPABASE_API_KEY
+          );
+
+          (async () => {
+            try {
+              // Simple health check query
+              const { data, error } = await supabase.auth.api.getUser();
+              if (error && error.status !== 401) {
+                console.error('Error pinging Supabase:', error);
+                process.exit(1);
+              }
+              console.log('✓ Supabase is alive!');
+            } catch (err) {
+              console.error('Failed to ping Supabase:', err);
+              process.exit(1);
+            }
+          })();
+          "
+
+      - name: Log success
+        run: echo "Supabase keep-alive completed successfully at $(date)"
